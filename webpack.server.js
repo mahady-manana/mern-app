@@ -4,7 +4,7 @@ const CWD = process.cwd();
 
 const config = {
     name : "server",
-    target : "node",
+    target : 'node',
     mode : "development",
     entry : [path.join(CWD, "./server/index.js")],
     output : {

@@ -3,7 +3,7 @@ let bundle = "";
 if (process.env.NODE_ENV === "development") {
     bundle = "/build/bundle.js";
 } else {
-    bundle = "/bundle.js";
+    bundle = "";
 }
 return (
     `<!DOCTYPE html>

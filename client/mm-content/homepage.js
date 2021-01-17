@@ -14,7 +14,13 @@ const [isAdded, setAdded] = useState(false);
 
 useEffect(() => {
     let cleanup = false;
-        axios.get("https://api.github.com/repos/git/git/contributors")
+        axios.get("http://api.github.com/repos/git/git/contributors", {
+            params : {
+                rejectUnauthorized: false,//add when working with https sites
+                requestCert: false,//add when working with https sites
+                agent: false,//add when working with https sites
+            }
+        })
         .then(response => {
             const all = response.data;
             const result = all.filter(contributor => {
@@ -22,7 +28,14 @@ useEffect(() => {
             })
             setSearchContributorResult(result)
         })
-        axios.get("https://api.github.com/organizations")
+        .catch(error => console.log(error))
+        axios.get("http://api.github.com/organizations",  {
+            params : {
+                rejectUnauthorized: false,//add when working with https sites
+                requestCert: false,//add when working with https sites
+                agent: false,//add when working with https sites
+            }
+        })
         .then(response => {
             const all = response.data;
             const result = all.filter(contributor => {
@@ -30,6 +43,7 @@ useEffect(() => {
             })
             setOrgnisations(result)
         })
+        .catch(error => console.log(error))
         return () => {
             cleanup = true;
         }
