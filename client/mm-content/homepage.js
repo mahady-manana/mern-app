@@ -107,7 +107,7 @@ return (
                 <ul style={{paddingLeft : '0px'}}>
                     {contributorGit()}
                 </ul>
-                <h2>List contributor :</h2>
+                <h2>List organisation :</h2>
                 <ul style={{paddingLeft : '0px'}}>
                     {organisationsGit()}
                 </ul>
