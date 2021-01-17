@@ -98,7 +98,7 @@ mongoose.connect(Config.mongouri ,{
     useFindAndModify : false
 }, error => {
     if (error) {
-        throw new Error("Unable to create connection to mongoDB")
+        console.log(error)
     }
     console.log("Connection to mongoDB : Successfully.")
 })

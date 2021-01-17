@@ -5,9 +5,33 @@ body {
 }
 h1, h2, h3, h4 {
     font-weight: 700;
+    font-variant: small-caps;
+}
+h4 {
+    font-size: 16px;
+}
+button.btn.btn-primary {
+    background: #24864f !important;
+}
+#github .item .item-wrapper:hover {
+    box-shadow: 0px 0px 20px 0 rgb(0 0 0 / 32%);
+    transform: scale(1.05);
+    border-color: #ffff;
+    transition: .5s;
+}
+
+#github .item .item-wrapper {
+    background: #cae2d5;
+    padding: 5px;
+    text-align: center;
+    transition: .5s;
+    border: 1px solid transparent;
 }
 a {
     color: red;
+}
+.bg-1 {
+    background-color: #24864f !important;
 }
 h1 {
     font-size: 36px;
@@ -19,19 +43,24 @@ h1 {
     padding: 27px 0px;
 }
 #signup .signup-entry {
-    background: #bfbfbf;
+    background: #83b99b;
     box-shadow: 0px 0px 20px rgb(0 0 0 / 31%);
     border-radius: 20px;
     border: 2px solid #fff;
     padding: 27px;
     text-align: center;
+    color: #fff;
 }
 #signin .sign-entry {
     max-width: 400px;
-    background: #bfbfbf;
+    background: #24864f;
     border-radius: 20px;
     padding: 20px;
+    color: #f1f1f1;
     text-align: center;
+}
+.wrapper-content {
+    background: #fafafa;
 }
 #signin .signin-entry h1,
 #signup .signin-entry h1 {

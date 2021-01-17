@@ -5,7 +5,8 @@ import Table from './user.dashbord.table';
 
 const UserDashbord = () => {
 const [hide, setHide] = useState(false)
-	const [user, setUser] = useState([])
+const [user, setUser] = useState([])
+const [isRemoved, checkRemoved] = useState(false)
 const [currentUser, setcurrentUser] = useState({
 	name : ""
 })
@@ -26,13 +27,24 @@ useEffect(() => {
 	return () => {
 		cleanup = true
 	}
-}, [hide])
-
+}, [hide, isRemoved])
+const removeFromFavorite = toremoved => event => {
+	event.preventDefault();
+	const id = Validator.isAuthenticated().user._id;
+	const items = {
+	  item : JSON.stringify(toremoved)
+	}
+	axios.put("/user/action/update/" + id, items)
+		.then(res => {
+			checkRemoved(!isRemoved)
+		})
+		.catch(error => console.log(error))
+  }
 
 const renderTable = () => {
 	return user.map((info, index) => {
 		const infoParsed = JSON.parse(info.item);
-		return <Table item= {infoParsed} user ={info} key={index}/>
+		return <Table item= {infoParsed} user ={info} remove={removeFromFavorite} key={index}/>
 	})
 }
 const hideOpen = event => {

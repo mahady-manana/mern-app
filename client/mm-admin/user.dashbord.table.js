@@ -26,16 +26,7 @@ useEffect(() => {
     cleanup = true
   }
 }, [])
-const removeFromFavorite = event => {
-  // event.preventDefault();
-  const id = Validator.isAuthenticated().user._id;
-  const items = {
-    item : JSON.stringify(props.item)
-  }
-  axios.put("/user/action/update/" + id, items)
-      .then(res => res.data)
-      .catch(error => console.log(error))
-}
+
   return (
       <tr>
         <td><img src={props.item.avatar_url} alt={props.item.login} style={{width : "50px", height : "50px"}}/></td>
@@ -43,7 +34,7 @@ const removeFromFavorite = event => {
         <td>{props.item.id}</td>
         <td>{props.user.note}</td>
         <td><button className="btn btn-primary" onClick={openNote}> View details</button></td>
-        <td><button className="btn btn-danger" onClick={removeFromFavorite}> Remove</button></td>
+        <td><button className="btn btn-danger" onClick={props.remove(props.item)}> Remove</button></td>
         <td className={isOpen ? "open-note" : "close-note"} id="popup-note" >
             <span onClick={openNote} className="close-btn">X</span>
             <div className="info">

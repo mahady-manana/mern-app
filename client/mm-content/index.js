@@ -24,11 +24,10 @@ const renderProperStatus = () => {
 return (
 <div className="wrapper-content">
     <div className="principal-menu">
-        <nav className="navbar navbar-expand-sm bg-light">
-            <Link className="navbar-brand" to="/">LOGO</Link>
+        <nav className="navbar navbar-expand-sm bg-1 justify-content-center">
             <ul className="navbar-nav">
                 <li className="nav-item">
-                    <Link className="nav-link" to="/">Home</Link>
+                    <Link className="nav-link text-white" to="/">HOME</Link>
                 </li>
                 
             </ul>

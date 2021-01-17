@@ -28,9 +28,9 @@ return (
         <div className="image-user">
              <img src={props.item.avatar_url} alt={props.item.login}/>
         </div>
-        <div className="login">
+        <h4 className="login">
             {props.item.login}
-        </div>
+        </h4>
         <div className="visit">
             <a href={`https://github.com/${props.item.login}`}>Visit repos</a>
         </div>
