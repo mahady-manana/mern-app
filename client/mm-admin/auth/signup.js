@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
 const Signup = () => {
@@ -8,7 +8,7 @@ const [values, makeValues] = useState({
     email : "",
     hashed_password : ""
 })
-
+const [isSuccess, setSuccess] = useState(false)
 const handleChange = event => {
     const name = event.target.name;
     makeValues({...values, [name] : event.target.value})
@@ -24,13 +24,22 @@ const handleSubmit = event => {
     // console.log(infos)
     axios.post("/user/action/add-user/", infos)
         .then(response => {
-            console.log("Signup successfully!")
+            setSuccess(true)
         })
         .catch(error => console.log(error))
 }
+
 return (
 <div id="signup" className="wrapper-content">
-    <div className="signup-entry container">
+    <div className={`info-success-signup ${isSuccess ? "show" : "hide"}`}>
+        <div className="text-success text-center">
+            Your account was created successfully!
+        </div>
+        <div className="text-center">
+            <Link to="/login"><button className="btn btn-success">Login</button></Link>
+        </div>
+    </div>
+    <div className={`signup-entry container ${isSuccess ? "hide" : "show"}`}>
         <h1>Sign up</h1>
         <p>Fill all fields to signup</p>
         <div className="entry">

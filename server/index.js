@@ -82,7 +82,8 @@ app.get("*", (req, res) => {
     }
     res.status(200).send(Templates({
         markup : Markup,
-        css : mergeCss(style1, style2, bootstrap)
+        css : mergeCss(style1, style2),
+        topCss : mergeCss(bootstrap)
     }))
 })
 /************

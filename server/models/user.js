@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import crypto from 'crypto'
+
 const UserSchemas = new mongoose.Schema({
   firstname: {
     type: String,
@@ -16,8 +16,8 @@ const UserSchemas = new mongoose.Schema({
   },
   favorite : [{
     item :{type : String}, 
-    note : {type : String}
+    note : {type : String, default : "none"}
   }]
 })
-export default mongoose.model('Usermodels_db123', UserSchemas)
+export default mongoose.model('Usermodels_db1234', UserSchemas)
 

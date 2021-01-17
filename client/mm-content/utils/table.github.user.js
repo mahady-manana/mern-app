@@ -1,17 +1,27 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
-
+import React, {useState, useEffect} from 'react';
+import Validator from "../../mm-admin/auth/auth.validator"
 const ShowCase = props => {
 const [isOpen, setOpen] = useState(false)
 const [values, setValues] = useState({note : ""})
+const [valide, setValide] = useState(false)
 const openNote = event => {
     event.preventDefault();
     setOpen(!isOpen)
 }
+useEffect(() => {
+    let cleanup = false;
+    if (Validator.isAuthenticated()) {
+        setValide(true)   
+    }
+    return () => {
+        cleanup = true;
+    }
+}, [])
 const handleChange = event =>{
     event.preventDefault();
     setValues({note : event.target.value})
 }
+
 return (
 <li className="item">
     <div className="item-wrapper">
@@ -26,11 +36,8 @@ return (
         </div>
             
         <div className="action">
-            <div className="view">
-                <button className="btn btn-primary">View details</button>
-            </div>
             <div className="addfavorite">
-                <button className="btn btn-primary" onClick={openNote}>Add to favorite</button>
+                <button className="btn btn-primary" onClick={openNote}> View or Add</button>
             </div>
         </div>
     </div>
@@ -49,13 +56,15 @@ return (
                 </div>
             </div>
         </div>
-            <form onSubmit={props.favorite(props.item, values.note)}>
+            <form>
                     Add your note here :
                     <div className="form-group">
                         <textarea className="form-control" placeholder="Add note" rows="10" cols="" value={values.note} onChange={handleChange}></textarea>
                     </div>
-                <button type="submit" className="btn btn-primary">Finish and add to Favorite.</button>
                 </form>
+                <p className="text-danger">{valide ? "" : "Please login to add items!"}</p>
+                <p className="text-success">{props.status ? "Added!" : ""}</p>
+                <button onClick={props.favorite(props.item, values.note)} className="btn btn-primary" disabled={valide ? false : true}>Finish and add to Favorite.</button>
             </div>
 </li>   
 )

@@ -2,13 +2,15 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ShowCase from './utils/table.github.user';
 import Validator from "../mm-admin/auth/auth.validator"
-import UserDashbord from "../mm-admin/user.dashbord"; 
+import { set } from 'mongoose';
 const Homepage = () => {
 
 const [organisations, setOrgnisations] = useState([])
 
 const [searchContributor, setSearchContributor] = useState('');
 const [searchContributorResult, setSearchContributorResult] = useState([]);
+
+const [isAdded, setAdded] = useState(false);
 
 useEffect(() => {
     let cleanup = false;
@@ -43,18 +45,24 @@ const addFavorite = (favorite, notes) => event => {
         const id = Validator.isAuthenticated().user._id;
         const favorites = {
             item : JSON.stringify(favorite),
-            notes : notes
+            note : notes
         }
         axios.put("/user/action/" + id, favorites)
-        .then(res => console.log(res.data))
-        // console.log(favorite)
+        .then(res => {
+            setAdded(true)
+            const timer = setTimeout(() => {
+                setAdded(false)
+            }, 4000)
+           return () => clearTimeout(timer)
+        })
+        .catch(error => console.log(error))
     } else {
         console.log("Need to loged")
     }
 }
 const contributorGit = () => {
     return searchContributorResult.map((contributor, index) => {
-        return <ShowCase key={index} item={contributor} favorite={addFavorite}/>
+        return <ShowCase key={index} item={contributor} status={isAdded} favorite={addFavorite}/>
     })
 }
 const organisationsGit = () => {
@@ -91,7 +99,6 @@ return (
                 </ul>
             </div>
         </div>
-        <UserDashbord/>
     </article>
 )
 }
