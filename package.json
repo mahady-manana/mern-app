@@ -22,6 +22,10 @@
   "author": "Mahady Manana",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
     "@hot-loader/react-dom": "^17.0.1",
     "aws4": "^1.11.0",
     "axios": "^0.21.1",
@@ -40,23 +44,19 @@
     "mongodb-client-encryption": "^1.1.0",
     "mongoose": "^5.11.11",
     "multer": "^1.4.2",
+    "nodemon": "^2.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hot-loader": "^4.13.0",
     "react-router-dom": "^5.2.0",
     "style-loader": "^2.0.0",
     "webpack": "5.12.2",
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-middleware": "^4.1.0",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-node-externals": "^2.5.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
-    "html-webpack-plugin": "^5.0.0-beta.4",
-    "nodemon": "^2.0.7",
-    "webpack-cli": "^4.3.1",
-    "webpack-dev-middleware": "^4.0.2",
-    "webpack-hot-middleware": "^2.25.0"
+    "html-webpack-plugin": "^5.0.0-beta.4"
   }
 }
