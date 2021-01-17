@@ -15,7 +15,7 @@ const signin = async (req, res) => {
       })
 
     if (!Bcryptjs.compareSync(req.body.hashed_password, user.hashed_password)) {
-        return res.send("Invalid password : Please verify your password")      
+        return res.json({error : "Invalid password : Please verify your password"})      
     }
 
     const token = jwt.sign({

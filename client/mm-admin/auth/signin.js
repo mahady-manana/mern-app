@@ -22,6 +22,7 @@ const user = {
 signin(user).then((data) => {
     if (data.error) {
     makeValues({ ...values, error: data.error})
+    console.log(data)
     } else {
     auth.authenticate(data, () => {
         makeValues({ ...values, error: '',redirectTo : true})
