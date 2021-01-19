@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const HtmlWebpackPlugins = require("html-webpack-plugin");
 
 const CWD = process.cwd();
 
@@ -13,7 +12,7 @@ const config = {
         path.join(CWD, "client/index.js")
     ],
     output : {
-        path : path.resolve(__dirname, "/build/"),
+        path : path.join(CWD, "/build/"),
         filename : "bundle.js",
         publicPath : "/build/"
     },

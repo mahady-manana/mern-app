@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ShowCase from './utils/table.github.user';
 import Validator from "../mm-admin/auth/auth.validator"
-import { set } from 'mongoose';
 const Homepage = () => {
 
 const [organisations, setOrgnisations] = useState([])
@@ -14,41 +13,50 @@ const [isAdded, setAdded] = useState(false);
 
 useEffect(() => {
     let cleanup = false;
-        axios.get("http://api.github.com/repos/git/git/contributors", {
-            params : {
-                rejectUnauthorized: false,//add when working with https sites
-                requestCert: false,//add when working with https sites
-                agent: false,//add when working with https sites
-            }
-        })
-        .then(response => {
-            const all = response.data;
-            const result = all.filter(contributor => {
-                return contributor.login.toLowerCase().includes(searchContributor.toLowerCase())
-            })
-            setSearchContributorResult(result)
-        })
-        .catch(error => console.log(error))
-        axios.get("http://api.github.com/organizations",  {
-            params : {
-                rejectUnauthorized: false,//add when working with https sites
-                requestCert: false,//add when working with https sites
-                agent: false,//add when working with https sites
-            }
-        })
-        .then(response => {
-            const all = response.data;
-            const result = all.filter(contributor => {
-                return contributor.login.toLowerCase().includes(searchContributor.toLowerCase())
-            })
-            setOrgnisations(result)
-        })
-        .catch(error => console.log(error))
-        return () => {
-            cleanup = true;
-        }
+    console.log("TETSTETTTTTTTT")
+    requestApi()
+    return () => {
+        cleanup = true;
+    }
+
 }, [searchContributor])
 
+const requestApi = () =>{
+    axios.get("https://api.github.com/repos/git/git/contributors", {
+        params : {
+            rejectUnauthorized: false,//add when working with https sites
+            requestCert: false,//add when working with https sites
+            agent: false,//add when working with https sites
+        }
+    })
+    .then(response => {
+        const all = response.data;
+        const result = all.filter(contributor => {
+            return contributor.login.toLowerCase().includes(searchContributor.toLowerCase())
+        })
+        setSearchContributorResult(result)
+    })
+    .catch(error => console.log(error))
+    axios.get("https://api.github.com/organizations",  {
+        headers : {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        params : {
+            rejectUnauthorized: false,//add when working with https sites
+            requestCert: false,//add when working with https sites
+            agent: false,//add when working with https sites
+        }
+    })
+    .then(response => {
+        const all = response.data;
+        const result = all.filter(contributor => {
+            return contributor.login.toLowerCase().includes(searchContributor.toLowerCase())
+        })
+        setOrgnisations(result)
+    })
+    .catch(error => console.log(error))
+}
 const makeSearchContr = event => {
     event.preventDefault()
     setSearchContributor(event.target.value)

@@ -1,11 +1,27 @@
-import React from 'react';
-import {hydrate, render} from 'react-dom';
+import React, {useEffect} from 'react';
+import {hydrate} from 'react-dom';
+import {ThemeProvider} from "@material-ui/core/styles";
 import App from "./App.js";
-import "bootstrap/dist/css/bootstrap.min.css"
-import "./stylesheets/main.css"
+import "./bootstrap.min.css";
+import "./stylesheets/main.css";
+import "./style.css";
+import theme from "./theme"; 
+const Main = () => {
 
-const renderMethod = module.hot ? render : hydrate; 
-renderMethod(
+useEffect(() => {
+    
+    const jsStyles = document.querySelector("#jsserver-css");
+    if (jsStyles) {
+        jsStyles.parentElement.removeChild(jsStyles);
+      }
+    return () => {
+       <ThemeProvider theme={theme}>
+           <App/>
+       </ThemeProvider>
+    }
+}, [])
+}
+hydrate(
     <App/>, document.getElementById("entryContent")
 )
 if (process.env.NODE_ENV === "development") {

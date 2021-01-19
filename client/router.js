@@ -10,9 +10,9 @@ const App = () => {
 return (
     <div className="web-content">
     <Switch>
+        <Route  path="/*" component={ContentEntry}/>
         <PrivateRoute path="/dashbord/" component={UserDashbord}/>
         <Route exact path="/login/" component={Signin}/>
-        <Route  path="/*" component={ContentEntry}/>
     </Switch>
     </div>
 )
