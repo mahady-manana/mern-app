@@ -15,7 +15,6 @@ const [isAdded, setAdded] = useState(false);
 
 useEffect(() => {
     let cleanup = false;
-    console.log("TETSTETTTTTTTT")
     requestApi()
     return () => {
         cleanup = true;
