@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Redirect, Link} from "react-router-dom";
 import {signin} from './api'
 import auth from './auth.validator';
-const Signin = props => {
+const SigninNew = props => {
 const [values, makeValues] = useState({
     email : "",
     hashed_password : "",
@@ -62,4 +62,4 @@ return (
 </div>
 )
 }
-export default Signin;
+export default SigninNew;

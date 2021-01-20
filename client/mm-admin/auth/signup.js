@@ -28,7 +28,6 @@ const handleSubmit = event => {
         })
         .catch(error => console.log(error))
 }
-
 return (
 <div id="signup" className="wrapper-content">
     <div className={`info-success-signup ${isSuccess ? "show" : "hide"}`}>
