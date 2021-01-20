@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "nodemon",
     "start": "node ./build/build.server.js",
+    "openshift": "nodeshift --expose --dockerImage=registry.access.redhat.com/rhscl/ubi8/nodejs-10",
     "build": "webpack --config webpack.production.js && webpack --mode=production --config webpack.server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
