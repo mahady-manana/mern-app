@@ -1,4 +1,5 @@
 import fs from "fs";
+import http from "http";
 import express from "express";
 import path from 'path';
 import cors from 'cors';
@@ -98,3 +99,7 @@ app.listen(Config.port,
         console.log(`Server running at ${Config.port} :\nVisit at : http://localhost:${Config.port}`)
     }
 )
+// for Glitch Only
+setInterval(() => {
+    http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+  }, 280000);
