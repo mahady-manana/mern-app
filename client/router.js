@@ -12,7 +12,7 @@ return (
     <Switch>
         <Route  path="/*" component={ContentEntry}/>
         <PrivateRoute path="/dashbord/" component={UserDashbord}/>
-        <Route exact path="/login/" component={Signin}/>
+        <Route path="/login/" component={Signin}/>
     </Switch>
     </div>
 )
